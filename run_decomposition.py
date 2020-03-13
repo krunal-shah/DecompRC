@@ -13,6 +13,7 @@ def main():
     parser.add_argument("--task", type=str, default="decompose")
     parser.add_argument("--out_name", default="out/onehop")
     parser.add_argument("--topk", type=int, default=10)
+    parser.add_argument("--perturb", type=str, default="no")
     args = parser.parse_args()
 
     out_name = args.out_name
@@ -32,8 +33,12 @@ def main():
         with open(os.path.join('data', 'hotpot-all', '{}.json'.format(data_type)), 'r') as f:
             orig_data = json.load(f)['data']
 
-        with open(os.path.join(out_name, '{}_predictions.json'.format(data_type)), 'r') as f:
-            result = json.load(f)
+        if args.perturb != "no":
+            with open(os.path.join(out_name, '{}_{}_perturbed_predictions.json'.format(data_type, args.perturb)), 'r') as f:
+                result = json.load(f)
+        else:
+            with open(os.path.join(out_name, '{}_predictions.json'.format(data_type)), 'r') as f:
+                result = json.load(f)
 
 
         if not os.path.isdir(os.path.join('data', 'decomposed')):

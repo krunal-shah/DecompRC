@@ -71,7 +71,7 @@ def load_vocab(vocab_file):
   """Loads a vocabulary file into a dictionary."""
   vocab = collections.OrderedDict()
   index = 0
-  with tf.gfile.GFile(vocab_file, "r") as reader:
+  with tf.io.gfile.GFile(vocab_file, "r") as reader:
     while True:
       token = convert_to_unicode(reader.readline())
       if not token:
@@ -122,13 +122,15 @@ class FullTokenizer(object):
 class BasicTokenizer(object):
   """Runs basic tokenization (punctuation splitting, lower casing, etc.)."""
 
-  def __init__(self, do_lower_case=True):
+  def __init__(self, do_lower_case=True, split_punct = True, ignore_ans = False):
     """Constructs a BasicTokenizer.
 
     Args:
       do_lower_case: Whether to lower case the input.
     """
     self.do_lower_case = do_lower_case
+    self.split_punct = split_punct
+    self.ignore_ans = ignore_ans
 
   def tokenize(self, text):
     """Tokenizes a piece of text."""
@@ -143,6 +145,26 @@ class BasicTokenizer(object):
       split_tokens.extend(self._run_split_on_punc(token))
 
     output_tokens = whitespace_tokenize(" ".join(split_tokens))
+    return output_tokens
+
+  def tokenize_for_perturbation(self, text):
+    """Tokenizes a piece of text."""
+    text = convert_to_unicode(text)
+    text = self._clean_text(text)
+    orig_tokens = whitespace_tokenize(text)
+    split_tokens = []
+    for token in orig_tokens:
+      if self.ignore_ans and token == "[ANSWER]":
+        pass
+      elif self.do_lower_case:
+        token = token.lower()
+        token = self._run_strip_accents(token)
+      if self.split_punct and token != "[ANSWER]":
+        split_tokens.extend(self._run_split_on_punc(token))
+      else:
+        split_tokens.extend([token])
+    output_tokens = whitespace_tokenize(" ".join(split_tokens))
+
     return output_tokens
 
   def _run_strip_accents(self, text):
