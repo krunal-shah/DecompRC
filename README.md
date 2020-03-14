@@ -35,12 +35,13 @@ where `{ARG}` is one of
 **Note**: At a time, only one perturbation can be run on a system since all the experiments use and modify similar files. However the commands `bridge.sh` and `intersection.sh` can be run in parallel and `aggregate.sh` must be run only after the first two commands have completed successfully.
 
 ### Code understood
-1. Understood the outputs of all the steps from decomposition to single hop to the scorer commands.
-2. Understood the perprocessor code which reads from the dataset file and converts the text into features in `prepro.py`.
+1. Understood the input (files) and output (files) of all the steps from decomposition to single hop to the scorer commands.
+2. Understood the perprocessor code which reads from the dataset file and converts the text into features in `prepro.py`. This was required for an experiment I wished to perform where I wanted to add the confidence scores to the final classification input.
 
 ### Code changes
 1. Implemented `perturb.py` which modifies the decomposed questions of the intersection and bridging questions.
 2. Made appropriate changes in the next step (`run_decomposition.py`) to read the relevant file.
+3. Made the relevant scripts.
 
 ************************************************************************************************************************
 ## Author's Version of the Readme
