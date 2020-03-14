@@ -43,7 +43,7 @@ where `{ARG}` is one of
 
 ### Code understood
 1. Understood the input (files) and output (files) of all the steps from decomposition to single hop to the scorer commands.
-2. Understood the perprocessor code which reads from the dataset file and converts the text into features in `prepro.py`. This was required for an experiment I wished to perform where I wanted to add the confidence scores to the final classification input.
+2. Understood the preprocessor code which reads from the dataset files and converts the text into features in `prepro.py`. This was required for an experiment I wished to perform where I wanted to add the confidence scores to the input to the final classification model.
 
 ### Code changes
 1. Implemented `perturb.py` which modifies the decomposed questions of the intersection and bridging questions.
