@@ -21,6 +21,13 @@ The final directory structure is expected to look like
     ├── main.py                           # from step 1
     ├── ...                               # from step 1
 ```
+### Environment
+Kindly use a conda environment created using
+```
+conda create --name <env> --file environment.txt
+```
+for the below experiments.
+
 ### Inference
 ```
 CUDA_VISIBLE_DEVICES=x bash bridge.sh {ARG}
