@@ -3,7 +3,7 @@
 ## Steps to reproduce
 ### Preprocessing
 #### Option 1
-1. Download the complete repository with the data, models and correct directory structure at [link](www.google.com).
+1. Download the complete repository with the data, models and correct directory structure at [link](https://upenn.box.com/s/uooj0eud9rjglchp59qbw37ufi2fzh27).
 #### Option 2
 1. Clone the repository <br>
 2. Download the data and models from [link](https://drive.google.com/file/d/1p7VrJIEmUY9tAWmx31chhStS-KoRWOJQ/view?usp=sharing), unzip it and place the contents in the root directory.
